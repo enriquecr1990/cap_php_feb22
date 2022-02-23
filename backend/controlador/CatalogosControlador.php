@@ -1,13 +1,19 @@
 <?php
 
+include_once "modelo/CatalogoModelo.php";
+
 class CatalogosControlador{
 
+    private $catalogoModelo;
+
+    function __construct()
+    {
+        $this->catalogoModelo = new CatalogoModelo();
+    }
+
+
     public function obtenerCatalogoTipoContacto(){
-        $catTipoContacto = array(
-            array('id' => 1,'tipo_contacto' => 'Telefono'),
-            array('id' => 2,'tipo_contacto' => 'Correo'),
-            array('id' => 3,'tipo_contacto' => 'Facebook'),
-        );
+        $catTipoContacto = $this->catalogoModelo->obtenerCatalogoTipoContacto();
         return array(
             'success' => true,
             'msg' => array('Se obtuvo el catalogo correctamente'),
