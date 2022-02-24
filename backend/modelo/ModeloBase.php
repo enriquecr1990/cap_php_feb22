@@ -23,4 +23,12 @@ class ModeloBase extends BaseDeDatos
         return $this->consultaRegistros($this->tabla,$condiciones);
     }
 
+    public function insertar($valoresInsert){
+        return $this->insertarRegistro($this->tabla,$valoresInsert);
+    }
+
+    public function actualizar($valoresUpdate,$condicionales){
+        return $this->actualizarRegistro($this->tabla,$valoresUpdate,$condicionales);
+    }
+
 }

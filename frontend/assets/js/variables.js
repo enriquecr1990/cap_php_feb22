@@ -1,0 +1,1 @@
+var URL_BACKEND = 'http://localhost/softura/capacitaciones/php_feb22/backend/rutas.php?';

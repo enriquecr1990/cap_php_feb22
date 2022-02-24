@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Curso PHP puro Softura</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="alert alert-primary text-center">
+        Sistema de empleados softura - Capacitacion PHP Puro
+    </div>
+
+    <!-- boton de agregar uno nuevo -->
+    <div class="row">
+        <div class="col-12" style="text-align: right">
+            <button type="button" id="btn_agregar_empleado" class="btn btn-outline-info btn-sm">Agregar empleado</button>
+        </div>
+    </div>
+    <!-- tablero de empleados -->
+    <div class="row" id="contenedor_tablero_empleado">
+        <table id="tableroEmpleados" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Identificador</th>
+                <th>Nombre completo</th>
+                <th>Dirección</th>
+                <th>Cumpleaños</th>
+                <th>Datos de contacto</th>
+                <th>Operaciones</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="row" id="contenedor_formulario_empleado" style="display: none">
+        contenedor del formulario
+    </div>
+
+</div>
+
+<!-- scripts js -->
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="assets/js/variables.js"></script>
+<script src="assets/js/catalogos.js"></script>
+<script src="assets/js/empleados/principal.js"></script>
+</body>
+</html>
