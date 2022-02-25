@@ -79,6 +79,10 @@ class BaseDeDatos{
 
     }
 
+    public function ultimoID(){
+        return $this->mysqli->insert_id;
+    }
+
     public function getErrores(){
         $msgError = array();
         foreach ($this->errores as $e){
