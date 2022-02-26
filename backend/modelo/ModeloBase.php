@@ -31,4 +31,8 @@ class ModeloBase extends BaseDeDatos
         return $this->actualizarRegistro($this->tabla,$valoresUpdate,$condicionales);
     }
 
+    public function eliminar($condiciones){
+        return $this->eliminarRegistro($this->tabla,$condiciones);
+    }
+
 }

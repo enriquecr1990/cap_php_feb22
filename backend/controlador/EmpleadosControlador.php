@@ -83,17 +83,33 @@ class EmpleadosControlador
             'success' => false,
             'msg' => array('No fue posible actualizar el empleado'),
         );
+        $datosContacto = $datosFormulario['listado_datos_contacto'];
+        unset($datosFormulario['listado_datos_contacto']);
         $validacion = ValidacionFormulario::validarFormEmpleadoActualizar($datosFormulario);
         if($validacion['status']){
             $id_empleado = $datosFormulario['id_empleado'];
             unset($datosFormulario['id_empleado']);
             $empleadoActualizar = $this->empleadoModelo->actualizar($datosFormulario,array('id' => $id_empleado));
             if($empleadoActualizar){
-                $respuesta = array(
-                    'success' => true,
-                    'msg' => array('Se actualizo el empleado correctamente'),
-                    //devolver en el data, los datos del empleado agregado, incluido su id
-                );
+                $guardoContacto = true;
+                $this->contactoEmpleadoModelo->eliminar(array('empleado_id' => $id_empleado));
+                foreach ($datosContacto as $dc){
+                    $dc['empleado_id'] = $id_empleado;
+                    $guardoContacto = $this->contactoEmpleadoModelo->insertar($dc);
+                }
+                if($guardoContacto){
+                    $respuesta = array(
+                        'success' => true,
+                        'msg' => array('Se actualizo el empleado correctamente'),
+                        //devolver en el data, los datos del empleado agregado, incluido su id
+                    );
+                }else{
+                    $respuesta = array(
+                        'success' => false,
+                        'msg' => array('Se el empleado correctamente pero faltaron los datos de contacto'),
+                        //devolver en el data, los datos del empleado agregado, incluido su id
+                    );
+                }
             }else{
                 $respuesta['success'] = false;
                 $respuesta['msg'] = $this->empleadoModelo->getErrores();
@@ -105,8 +121,28 @@ class EmpleadosControlador
         return $respuesta;
     }
 
-    public function eliminar(){
-
+    public function eliminar($datosFormulario){
+        $respuesta = array(
+            'success' => false,
+            'msg' => array('No fue posible actualizar el empleado'),
+        );
+        $validacion = ValidacionFormulario::validarFormEmpleadoEliminar($datosFormulario);
+        if($validacion['status']){
+            $empleadoEliminar = $this->empleadoModelo->eliminar(array('id' => $datosFormulario['id_empleado']));
+            if($empleadoEliminar){
+                $respuesta = array(
+                    'success' => true,
+                    'msg' => array('Se eliminó el empleado correctamente'),
+                );
+            }else{
+                $respuesta['success'] = false;
+                $respuesta['msg'] = $this->empleadoModelo->getErrores();
+            }
+        }else{
+            $respuesta['success'] = false;
+            $respuesta['msg'] = $validacion['msg'];
+        }
+        return $respuesta;
     }
 
 }

@@ -50,7 +50,8 @@ if(isset($parametros_get['peticion']) && $parametros_get['peticion'] != ''
                     $rutas->peticion($respuesta_controlador['success'] ? 200 : 400,$respuesta_controlador);
                     break;
                 case 'eliminar':
-                    $respuesta_controlador = $empControlador->eliminar();
+                    $respuesta_controlador = $empControlador->eliminar($parametros_post);
+                    $rutas->peticion($respuesta_controlador['success'] ? 200 : 400,$respuesta_controlador);
                     break;
                 default:
                     $rutas->peticion(404,$respuesta_backend);

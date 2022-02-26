@@ -34,4 +34,14 @@ class ValidacionFormulario
         return $validacion;
     }
 
+    public static function validarFormEmpleadoEliminar($datosFormulario){
+        $validacion['status'] = true;
+        $validacion['msg'] = array();
+        if(!isset($datosFormulario['id_empleado']) || $datosFormulario['id_empleado'] == ''){
+            $validacion['status'] = false;
+            $validacion['msg'][] = 'El campo identificador del empleado es requerido';
+        }
+        return $validacion;
+    }
+
 }
