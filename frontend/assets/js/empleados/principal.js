@@ -94,7 +94,7 @@ var Empleados = {
                         var stringEmpleado = btoa(JSON.stringify(empleado));//almacenar en una cadena de string y codificarla
                         var html_datos_contacto_empleado = '';
                         empleado.datos_contacto.forEach(function(contacto){
-                            html_datos_contacto_empleado += '<li>'+contacto.dato_contacto+'</li>';
+                            html_datos_contacto_empleado += '<li>'+contacto.tipo_contacto+': '+ contacto.dato_contacto+'</li>';
                         });
                         html_listado_empleados += '<tr>' +
                                 '<td>'+empleado.id+'</td>' +

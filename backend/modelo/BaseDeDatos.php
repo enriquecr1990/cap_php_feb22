@@ -41,6 +41,15 @@ class BaseDeDatos{
         return $datos;
     }
 
+    public function obtenerResultadosQuery($stringSQL){
+        $query = $this->mysqli->query($stringSQL);
+        $datos = array();
+        while($registro = $query->fetch_assoc()){
+            $datos[] = $registro;
+        }
+        return $datos;
+    }
+
     /**
      * @param $tabla
      * @param $valoresInsert
@@ -110,7 +119,7 @@ class BaseDeDatos{
      * funcion que recibe un arragle de condiciones para los SQL where
      * array(array('nombre_columna1'=> valor1), array('nombre_columna2'=> valor2),...)
      */
-    private function obtenerCondicionalesWhereAnd($condicionales){
+    public function obtenerCondicionalesWhereAnd($condicionales){
         $condiciones = " WHERE 1=1";
         foreach ($condicionales as $columna => $valor){
             $condiciones .= " AND $columna = '$valor'";
